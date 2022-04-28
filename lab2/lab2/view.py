@@ -81,15 +81,15 @@ def main():
 
             if (countryList.get_count() > 0):
                 countryList.delete_at_start()
-                print(f"O país foi eliminado da lista.")
-            else: print(f"O país  não se encontra na lista.")
+                print(f"O país {nome_país} foi eliminado da lista.")
+            else: print(f"O país {nome_país} não se encontra na lista.")
 
         if commands[0] == "EUE":
 
             if (countryList.get_count() > 0):
                 countryList.delete_at_end()
-                print(f"O país foi eliminado da lista.")
-            else: print(f"O país  não se encontra na lista.")
+                print(f"O país {nome_país} foi eliminado da lista.")
+            else: print(f"O país {nome_país}  não se encontra na lista.")
 
         if commands[0] == "EP":
             nome_país = commands[1]
