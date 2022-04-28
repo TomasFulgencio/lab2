@@ -1,5 +1,7 @@
+from itertools import count
 import controller
-from model import LinkedList
+from models.LinkedList import LinkedList
+from models.Node import Node
 
 def main():
     countryList = LinkedList()
@@ -8,43 +10,93 @@ def main():
         commands = input().split()
 
         if commands[0] == "RPI":
-            countryList.push(commands[1])
+            country = commands[1]
+            
+            if (countryList.get_count() == 0):
+                countryList.insert_at_start(country)
+            
+            else: countryList.insert_at_start(country)
 
-            for x in countryList:
-                #print de todos os elementos
+            countryList.traverse_list()
 
-        #if commands[0] == "RPF":
-        #if commands[0] == "RPDE":
-        #if commands[0] == "RPAE":
-        #if commands[0] == "RPII":
+        if commands[0] == "RPF":
+            country = commands[1]
+
+            if (countryList.get_count() > 0):
+                countryList.insert_at_end(country)
+            
+            else: countryList.insert_at_start(country)
+
+            countryList.traverse_list()
+        
+        if commands[0] == "RPDE":
+            country_new = commands[1]
+            country_old = commands[2]
+
+            if (countryList.get_count() > 0):
+                countryList.insert_after_item(country_old, country_new)
+
+            else: countryList.insert_at_start(country_new)
+
+            countryList.traverse_list()
+        
+        if commands[0] == "RPAE":
+            country_new = commands[1]
+            country_old = commands[2]
+
+            if (countryList.get_count() > 0):
+                countryList.insert_before_item(country_old, country_new)
+
+            else: countryList.insert_at_start(country_old)
+
+            countryList.traverse_list()
+        
+        if commands[0] == "RPII":
+            country = commands[1]
+            index = int(commands[2])
+
+            if (countryList.get_count() > 0):
+                countryList.insert_at_index(index, country)
+            
+            else: countryList.insert_at_start(country)
+
+            countryList.traverse_list()
 
         if commands[0] == "VNE":
 
-            número_elementos = len(countryList)
+            número_elementos = countryList.get_count()
             print(f"O número de elementos são {número_elementos}.")
         
         if commands[0] == "VP":
-            nome_país = [1]
+            nome_país = commands[1]
 
-            if nome_país in countryList:
-                print(f"O país {nome_país} encontra-se na lista.")
-            else:
-                print(f"O país {nome_país} não se encontra na lista.")
-
+            if (countryList.get_count() > 0):
+                if (countryList.search_item(nome_país) == True):
+                    print(f"O país {nome_país} encontra-se na lista.")
+                else:
+                    print(f"O país {nome_país} não se encontra na lista.")
+            else: print("A Lista está vazia!")
+        
         if commands[0] == "EPE":
 
-            nome_país_eliminado = countryList.push(commands[1])
-            print(f"O país {nome_país_eliminado} foi eliminado da lista.")
+            if (countryList.get_count() > 0):
+                countryList.delete_at_start()
+                print(f"O país foi eliminado da lista.")
+            else: print(f"O país  não se encontra na lista.")
 
         if commands[0] == "EUE":
 
-            nome_país_eliminado = countryList.append
-            print(f"O país {nome_país_eliminado} foi eliminado da lista.")
+            if (countryList.get_count() > 0):
+                countryList.delete_at_end()
+                print(f"O país foi eliminado da lista.")
+            else: print(f"O país  não se encontra na lista.")
 
         if commands[0] == "EP":
-            nome_país = [1]
+            nome_país = commands[1]
 
-            if nome_país in countryList:
-                print(f"O país {nome_país_eliminado} foi eliminado da lista.")
-            else:
-                print(f"O país {nome_país_eliminado} não se encontra na lista.")
+            if (countryList.get_count() > 0):
+                if (countryList.delete_element_by_value(nome_país) == True):
+                    print(f"O país {nome_país} foi eliminado da lista.")
+                if (countryList.delete_element_by_value(nome_país) == False):
+                    print(f"O país {nome_país} não se encontra na lista.")
+            else: ("Lista Vazia")
