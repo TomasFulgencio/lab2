@@ -78,25 +78,25 @@ def main():
             else: print("A Lista está vazia!")
         
         if commands[0] == "EPE":
-
+            first_node = countryList.start_node.get_item()
+            
             if (countryList.get_count() > 0):
                 countryList.delete_at_start()
-                print(f"O país {nome_país} foi eliminado da lista.")
-            else: print(f"O país {nome_país} não se encontra na lista.")
+                print(f"O país {first_node} foi eliminado da lista.")
+            else: print(f"O país  não se encontra na lista.")
 
         if commands[0] == "EUE":
+            last_node = countryList.get_last_node()
 
             if (countryList.get_count() > 0):
                 countryList.delete_at_end()
-                print(f"O país {nome_país} foi eliminado da lista.")
-            else: print(f"O país {nome_país}  não se encontra na lista.")
+                print(f"O país {last_node} foi eliminado da lista.")
+            else: print(f"O país  não se encontra na lista.")
 
         if commands[0] == "EP":
             nome_país = commands[1]
 
-            if (countryList.get_count() > 0):
-                if (countryList.delete_element_by_value(nome_país) == True):
-                    print(f"O país {nome_país} foi eliminado da lista.")
-                if (countryList.delete_element_by_value(nome_país) == False):
-                    print(f"O país {nome_país} não se encontra na lista.")
-            else: ("Lista Vazia")
+            if (countryList.search_item(nome_país) == True):
+                countryList.delete_element_by_value(nome_país)
+                print(f"O país {nome_país} foi eliminado da lista.")
+            else: print(f"O país {nome_país} não se encontra na lista")
